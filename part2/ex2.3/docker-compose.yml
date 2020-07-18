@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  backend:
+    image: ex2.3-be
+    build: ./be
+    ports:
+      - 8000:8000
+  frontend:
+    image: ex2.3-fe
+    build: ./fe
+    ports:
+      - 5000:5000
