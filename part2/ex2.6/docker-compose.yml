@@ -1,0 +1,22 @@
+version: '3.5'
+
+services:
+  db:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: node_be
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: ex26
+  backend:
+    image: ex2.5_backend
+    build: ./backend-example-docker
+    environment:
+      - DB_USERNAME=node_be
+      - DB_PASSWORD=secret
+      - DB_NAME=ex26
+      - DB_HOST=db
+    depends_on:
+      - db
+    ports:
+      - 8000:8000
