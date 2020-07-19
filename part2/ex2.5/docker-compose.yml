@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  redis:
+    image: redis:latest
+  backend:
+    image: ex2.5_backend
+    build: ./backend-example-docker
+    environment:
+      - REDIS=redis
+      - REDIS_PORT=6379
+    ports:
+      - 8000:8000
