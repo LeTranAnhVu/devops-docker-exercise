@@ -1,0 +1,27 @@
+version: '3.5'
+
+services:
+  training:
+    image: ex27_training
+    build: ./ml-kurkkumopo-training
+    volumes:
+      - models:/src/model
+  fe:
+    image: ex27_fe
+    build: ./ml-kurkkumopo-frontend
+    ports:
+      - 3000:3000
+  be:
+    image: ex27_be
+    build: ./ml-kurkkumopo-backend
+    volumes:
+      - models:/src/model
+    depends_on:
+      - training
+    ports:
+      - 5000:5000
+
+
+
+volumes:
+  models:
